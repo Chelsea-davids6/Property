@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/agent.css">
+
+    <title>Agent Page</title>
+</head>
+<body>
+    <h1>Welcome {{ session['logged_in_agent'] }}</h1>
+    <h2>Information of interested tenants:</h2>
+    {% if tenant_request %}
+        {% for request in tenant_request %}
+            {% if session['logged_in_agent'] == 'agent1@gmail.com' and request[4] == 'agent1@gmail.com' %}
+                <p>Tenant Name: {{ request[0] }}</p>
+                <p>Tenant Email: {{ request[1] }}</p>
+                <p>Location: {{ request[2] }}</p>
+                <p>Property Type: {{ request[3] }}</p>
+                <hr>
+            {% elif session['logged_in_agent'] == 'agent2@gmail.com' and request[4] == 'agent2@gmail.com' %}
+                <p>Tenant Name: {{ request[0] }}</p>
+                <p>Tenant Email: {{ request[1] }}</p>
+                <p>Location: {{ request[2] }}</p>
+                <p>Property Type: {{ request[3] }}</p>
+                <hr>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>Looks like theres no interested tenants.</p>
+    {% endif %}
+
+    {% if error_message %}
+        <div id="error-message">
+            <h3>Error Message:</h3>
+            <p>{{ error_message }}</p>
+        </div>
+    {% endif %}
+
+    <div>
+        <a href="/logout" class="agent-logout-button">Logout</a>
+    </div>
+</body>
+</html>

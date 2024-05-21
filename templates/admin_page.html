@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/admin.css">
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1>Welcome Admin</h1>
+    <h2>All Tenant Requests:</h2>
+    {% if tenant_requests %}
+        <table border="1">
+            <tr>
+                <th>Tenant Name</th>
+                <th>Tenant Email</th>
+                <th>Location</th>
+                <th>Property Type</th>
+                <th>Agent Name</th>
+            </tr>
+            {% for request in tenant_requests %}
+                <tr>
+                    <td>{{ request[0] }}</td>
+                    <td>{{ request[1] }}</td>
+                    <td>{{ request[2] }}</td>
+                    <td>{{ request[3] }}</td>
+                    <td>{{ request[4] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No tenant requests available at the moment.</p>
+    {% endif %}
+
+    <div>
+        <a href="/logout" class="logout-button">Logout</a>
+    </div>
+</body>
+</html>
